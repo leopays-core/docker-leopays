@@ -16,7 +16,7 @@
 
 **`latest` (`ubuntu-18.04`)**
 ```
-./leopays/.cicd/platforms/pinned/ubuntu-18.04-pinned.dockerfile 
+./leopays/.cicd/platforms/pinned/ubuntu-18.04-pinned.dockerfile
 ->
 ./docker-leopays/builder/Dockerfile
 ```
