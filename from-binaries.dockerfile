@@ -9,8 +9,8 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     openssl ca-certificates wget libssl1.1 libicu60 libusb-1.0-0 libcurl3-gnutls && \
     rm -rf /var/lib/apt/lists/*
 
-#RUN wget $binaries_link -o /binaries.deb
-COPY ./leopays_$LEOPAYS_VERSION-ubuntu-18.04_amd64.deb /binaries.deb
+RUN wget $binaries_link -o /binaries.deb
+#COPY ./leopays_$LEOPAYS_VERSION-ubuntu-18.04_amd64.deb /binaries.deb
 RUN apt-get install -y /binaries.deb && rm /binaries.deb
 
 COPY ./config.ini /
