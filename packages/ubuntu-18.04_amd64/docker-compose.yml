@@ -1,0 +1,9 @@
+version: "3"
+
+services:
+  ubuntu-18.04_amd64:
+    build:
+      context: .
+    command: cp -r /leopays/build/packages /tmp
+    volumes:
+      - ./packages:/tmp/packages

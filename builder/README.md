@@ -1,6 +1,4 @@
 # Build `leopays/builder` Docker image
-> Docker Hub https://hub.docker.com/u/leopays
-
 > https://hub.docker.com/r/leopays/builder
 
 ## Tags
@@ -21,17 +19,31 @@
 ./docker-leopays/builder/Dockerfile
 ```
 
+**Из корня репозитория**
 ```bash
-docker build --no-cache --tag leopays/builder:ubuntu-18.04 --file ./.cicd/platforms/pinned/ubuntu-18.04-pinned.dockerfile .
-docker tag leopays/builder:ubuntu-18.04 leopays/builder:ubuntu-18.04-v0.1.0-rc1
+VERSION=v0.1.0-rc1
+
+docker build --no-cache --tag leopays/builder:ubuntu-18.04-$VERSION --file ./.cicd/platforms/pinned/ubuntu-18.04-pinned.dockerfile .
+docker tag leopays/builder:ubuntu-18.04-$VERSION leopays/builder:ubuntu-18.04
 docker tag leopays/builder:ubuntu-18.04 leopays/builder:latest
-docker push leopays/builder:ubuntu-18.04-v0.1.0-rc1
+docker push leopays/builder:ubuntu-18.04-$VERSION
 docker push leopays/builder:ubuntu-18.04
 docker push leopays/builder:latest
 
-docker build --no-cache --tag leopays/builder:ubuntu-18.04-unpinned --file ./.cicd/platforms/unpinned/ubuntu-18.04-unpinned.dockerfile .
-docker tag leopays/builder:ubuntu-18.04-unpinned leopays/builder:ubuntu-18.04-v0.1.0-rc1-unpinned
-docker push leopays/builder:ubuntu-18.04-v0.1.0-rc1-unpinned
+docker build --no-cache --tag leopays/builder:ubuntu-18.04-$VERSION-unpinned --file ./.cicd/platforms/unpinned/ubuntu-18.04-unpinned.dockerfile .
+docker tag leopays/builder:ubuntu-18.04-$VERSION-unpinned leopays/builder:ubuntu-18.04-unpinned
+docker push leopays/builder:ubuntu-18.04-$VERSION-unpinned
 docker push leopays/builder:ubuntu-18.04-unpinned
 
+
+
+docker build --no-cache --tag leopays/builder:ubuntu-16.04 --file ./.cicd/platforms/pinned/ubuntu-16.04-pinned.dockerfile .
+docker tag leopays/builder:ubuntu-16.04 leopays/builder:ubuntu-16.04-v0.1.0-rc1
+docker push leopays/builder:ubuntu-16.04-v0.1.0-rc1
+docker push leopays/builder:ubuntu-16.04
+
+docker build --no-cache --tag leopays/builder:ubuntu-16.04-unpinned --file ./.cicd/platforms/unpinned/ubuntu-16.04-unpinned.dockerfile .
+docker tag leopays/builder:ubuntu-16.04-unpinned leopays/builder:ubuntu-16.04-v0.1.0-rc1-unpinned
+docker push leopays/builder:ubuntu-16.04-v0.1.0-rc1-unpinned
+docker push leopays/builder:ubuntu-16.04-unpinned
 ```
