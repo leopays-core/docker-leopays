@@ -3,11 +3,12 @@ FROM leopays/builder as builder
 ARG repo=https://github.com/leopays-chain/leopays.git
 ARG branch=release/2.0.x
 ARG symbol=LPC
-ARG build_type=Release
+ARG type=Release
 
-RUN git clone -b $branch $repo --recursive /leopays && \
-    cd /leopays && echo "$branch:$(git rev-parse HEAD)" > /etc/leopays-version && \
-    ./scripts/leopays_build.sh -y -m -s $symbol -o $build_type -i /tmp/build && \
+RUN git clone -b $branch $repo /leopays && \
+    cd /leopays &&  git submodule update --init --recursive && \
+    echo "$branch:$(git rev-parse HEAD)" > /etc/leopays-version && \
+    ./scripts/leopays_build.sh -y -m -s $symbol -o $type -i /tmp/build && \
     ./scripts/leopays_install.sh
 
 

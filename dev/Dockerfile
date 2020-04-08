@@ -3,14 +3,14 @@ FROM leopays/builder
 ARG repo=https://github.com/leopays-chain/leopays.git
 ARG branch=release/2.0.x
 ARG symbol=LPC
-ARG build_type=Release
+ARG type=Release
 
 RUN git clone -b $branch $repo /leopays
 RUN cd /leopays && git submodule update --init --recursive && \
     echo "$branch:$(git rev-parse HEAD)" > /etc/leopays-version
 RUN cd /leopays && ./scripts/leopays_build.sh -y \
     # -P \
-    -o $build_type \
+    -o $type \
     -s $symbol \
     #-b DIR \
     -i /opt/leopays \
