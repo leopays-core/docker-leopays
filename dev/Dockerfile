@@ -5,13 +5,18 @@ ARG branch=release/2.0.x
 ARG symbol=LPC
 ARG build_type=Release
 
-RUN apt-get update && apt-get upgrade -y && apt-get install -y git
-RUN git clone -b $branch $repo /leopays && \
-    cd /leopays && git submodule update --init --recursive && \
-    echo "$branch:$(git rev-parse HEAD)" > /etc/leopays-version && \
-    ./scripts/leopays_build.sh -m -y -s $symbol -o $build_type -i /opt/leopays && \
-    ./scripts/leopays_install.sh && \
-    cp /leopays/docker/config.ini / && \
+RUN git clone -b $branch $repo /leopays
+RUN cd /leopays && git submodule update --init --recursive && \
+    echo "$branch:$(git rev-parse HEAD)" > /etc/leopays-version
+RUN cd /leopays && ./scripts/leopays_build.sh -y \
+    # -P \
+    -o $build_type \
+    -s $symbol \
+    #-b DIR \
+    -i /opt/leopays \
+    -c -d -m
+RUN cd /leopays && ./scripts/leopays_install.sh
+RUN cp /leopays/docker/config.ini / && \
     ln -s /leopays/unittests/contracts /contracts && \
     cp /leopays/docker/leopays-node.sh /opt/leopays/bin/leopays-node.sh && \
     ln -s /leopays/tutorials /tutorials

@@ -27,7 +27,7 @@ services:
       dockerfile: ./from-binaries.dockerfile
       args:
         - binaries_link=https://github.com/leopays-chain/leopays/releases/download/v0.1.0-rc1/leopays_0.1.0-rc1-ubuntu-18.04_amd64.deb
-    image: leopays/leopays
+    image: leopays/leopays:local
     command: leopays-wallet --wallet-dir /data --http-server-address=127.0.0.1:8900 --http-alias=leopays_wallet:8900 --http-alias=localhost:8900
     hostname: leopays_wallet
     links:

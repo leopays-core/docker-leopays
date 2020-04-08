@@ -5,10 +5,9 @@ ARG branch=release/2.0.x
 ARG symbol=LPC
 ARG build_type=Release
 
-#RUN apt-get update -y && apt-get install -y libcurl4-openssl-dev libusb-1.0-0-dev
 RUN git clone -b $branch $repo --recursive /leopays && \
     cd /leopays && echo "$branch:$(git rev-parse HEAD)" > /etc/leopays-version && \
-    ./scripts/leopays_build.sh -m -y -s $symbol -o $build_type -i /tmp/build && \
+    ./scripts/leopays_build.sh -y -m -s $symbol -o $build_type -i /tmp/build && \
     ./scripts/leopays_install.sh
 
 
