@@ -6,4 +6,4 @@ services:
       context: .
     command: cp -r /leopays/build/packages /tmp
     volumes:
-      - ./packages:/tmp/packages
+      - ./package:/tmp/packages
