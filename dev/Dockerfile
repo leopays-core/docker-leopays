@@ -20,7 +20,7 @@ RUN cp /leopays/docker/config.ini / && \
     cp /leopays/docker/leopays-node.sh /opt/leopays/bin/leopays-node.sh && \
     ln -s /leopays/tutorials /tutorials
 
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y && \
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     openssl ca-certificates vim psmisc python3-pip && \
     rm -rf /var/lib/apt/lists/*
 RUN pip3 install numpy
