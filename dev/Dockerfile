@@ -9,12 +9,11 @@ RUN git clone -b $branch $repo /leopays
 RUN cd /leopays && git submodule update --init --recursive && \
     echo "$branch:$(git rev-parse HEAD)" > /etc/leopays-version
 RUN cd /leopays && ./scripts/leopays_build.sh -y \
-    # -P \
+    # -P -b DIR -c -d \
     -o $type \
     -s $symbol \
-    #-b DIR \
     -i /opt/leopays \
-    -c -d -m
+    -m
 RUN cd /leopays && ./scripts/leopays_install.sh
 RUN cp /leopays/docker/config.ini / && \
     ln -s /leopays/unittests/contracts /contracts && \

@@ -12,7 +12,7 @@ RUN git submodule update --init --recursive
 
 RUN echo "$branch:$(git rev-parse HEAD)" > /etc/leopays-version
 
-RUN ./scripts/leopays_build.sh -i /opt/leopays -y 
+RUN ./scripts/leopays_build.sh -i /opt/leopays -m -y 
 
 RUN ./scripts/leopays_install.sh
 
